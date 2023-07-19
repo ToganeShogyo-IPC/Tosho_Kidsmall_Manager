@@ -16,7 +16,7 @@
 
 ## 1.DashimonoData_Editorを使用して作成するパターン
 
-> **Info**  
+> **Note**  
 > このセクションではTosho_Kidsmall_Manager Ver1.0に付属しているDashimonoData_Editor Ver1.0を用いて解説します。
 > また、すべての操作においてDasimonoData_Editorを開くことが必須なので、起動するステップは省いています。  
 ### 1.最初からデータを入力する
