@@ -100,7 +100,6 @@ namespace Tosho_Kidsmall_Manager
             label5.Text = "出し物の名前：";
             label6.Text = "受け入れ可能人数：";
             label7.Text = "残人数：";
-
             if (hanbetsushi == "+") 
             {
                 globalVar.datas[index].ZanNinzu++;
