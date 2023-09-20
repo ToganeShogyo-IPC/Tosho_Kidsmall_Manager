@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -33,6 +34,16 @@ namespace Tosho_Kidsmall_Manager
                 label5.Text = "出し物の名前：" + globalVar.datas[selectindex].Name;
                 label6.Text = "受け入れ可能人数：" + globalVar.datas[selectindex].OKNinzu;
                 label7.Text = "残人数：" + globalVar.datas[selectindex].ZanNinzu;
+                if (globalVar.datas[selectindex].ZanNinzu >= 1)
+                {
+                    label8.Text = "受付可能です";
+                    label8.ForeColor = Color.Green;
+                }
+                else if (globalVar.datas[selectindex].ZanNinzu == 0)
+                {
+                    label8.Text = "!!受付不可です";
+                    label8.ForeColor = Color.Crimson;
+                }
             }
         }
 
@@ -44,6 +55,9 @@ namespace Tosho_Kidsmall_Manager
             foreach (DashimonoDatas dashimono in globalVar.datas)
             {
                 dashimono.ZanNinzu = dashimono.OKNinzu;
+                string[] items = { dashimono.Class, dashimono.Name, dashimono.OKNinzu.ToString(), dashimono.ZanNinzu.ToString() };
+                listView1.Items.Add(new ListViewItem(items));
+                listView1.Items[i].BackColor = Color.LightCyan;
                 i++;
                 if(i == 10 || i == 17)
                 {
@@ -53,8 +67,6 @@ namespace Tosho_Kidsmall_Manager
                 {
                     label2.Text += $"{dashimono.Class} ( {dashimono.ZanNinzu} 人), ";
                 }
-                string[] items = { dashimono.Class, dashimono.Name, dashimono.OKNinzu.ToString(), dashimono.ZanNinzu.ToString() };
-                listView1.Items.Add(new ListViewItem(items));
             }
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
@@ -113,18 +125,22 @@ namespace Tosho_Kidsmall_Manager
             label3.Text = "受付不可：";
             List<string> OKDashimono = new List<string>();
             List<string> NGDashimono = new List<string>();
+            int listkazu = 0;
             foreach (DashimonoDatas dashimono in globalVar.datas)
             {
+                string[] items = { dashimono.Class, dashimono.Name, dashimono.OKNinzu.ToString(), dashimono.ZanNinzu.ToString() };
+                listView1.Items.Add(new ListViewItem(items));        
                 if (dashimono.ZanNinzu == 0)
                 {
                     NGDashimono.Add($"{dashimono.Class} ( {dashimono.ZanNinzu}人 ), ");
+                    listView1.Items[listkazu].BackColor = Color.Pink;
                 }
                 else
                 {
                     OKDashimono.Add($"{dashimono.Class} ( {dashimono.ZanNinzu}人 ), ");
+                    listView1.Items[listkazu].BackColor = Color.LightCyan;
                 }
-                string[] items = { dashimono.Class, dashimono.Name, dashimono.OKNinzu.ToString(), dashimono.ZanNinzu.ToString() };
-                listView1.Items.Add(new ListViewItem(items));
+                listkazu++;
             }
             int i = 0;
             int r = 0;
@@ -152,6 +168,8 @@ namespace Tosho_Kidsmall_Manager
                     label3.Text += ng;
                 }
             }
+            label8.Text = "非選択";
+            label8.ForeColor = Color.Black;
         }
 
         /// <summary>
