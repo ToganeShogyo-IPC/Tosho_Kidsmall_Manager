@@ -205,5 +205,10 @@ namespace Tosho_Kidsmall_Manager
             return 0;
         }
 
+        private void 別画面用ウインドウを表示するToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 f = new Form2();
+            f.Show();
+        }
     }
 }
