@@ -42,7 +42,7 @@ namespace Tosho_Kidsmall_Manager
             int blockh = (int)canvas.Height/row;
             int mozitate = (int)blockh / 4;
             int moziyoko = (int)blockw / 2;
-            int magine = mozitate * 2;
+            int magine = mozitate *25/10;
 
             Font viewfont = new Font("ＤＦ特太ゴシック体",42);
             StringFormat sf = new StringFormat() { 
@@ -69,8 +69,8 @@ namespace Tosho_Kidsmall_Manager
                         tg.DrawRectangle(new Pen(Color.DarkSlateGray, 1), new Rectangle(0, 0, blockw-1, blockh-1));
                     }
                     //tg.DrawString(value.Name, viewfont, new SolidBrush(Color.Black), new Point(moziyoko, mozitate),sf);
+                    tg.DrawString(value.Name, viewfont, new SolidBrush(Color.Black), new Rectangle(0,0,blockw,mozitate*3), sf);
                     tg.DrawString(value.ZanNinzu.ToString(), viewfont, new SolidBrush(Color.Black), new Point(moziyoko, mozitate+magine),sf);
-                    tg.DrawString(value.Name, viewfont, new SolidBrush(Color.Black), new Rectangle(0,0,blockw,mozitate*2), sf);
                 }
                 g.DrawImage(tempCanvas, yokostart, tatestart);
                 yokostart += blockw;
